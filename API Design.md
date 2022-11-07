@@ -12,25 +12,27 @@
 4. Customer logs into Customer Account
 5. Customer checks out
 6. Store Clerk fulfills Order
-7. a. If an Item was not found, Support contacts Customer
-8. b. If all Items were found, Store Clerk ships Order
+7. If an Item was not found, Support contacts Customer
+8. If all Items were found, Store Clerk ships Order
 
-### Objects:
+### Resources:
  - Item
  - Cart
  - Customer Account
  - Order
 
-### Resources:
+### Resource Actions:
 - Search items              GET
 - View item                 GET
 - Add first item to cart    POST
 - Add and remove items      PUT
 - View cart                 GET
+- Clear cart                DELETE
 - Check out                 POST
 - List orders               GET
 - View order                GET
 - Cancel order              POST/PUT (not DELETE)
+- Fulfill order             POST/PUT
 
 ### Dependencies:
  - Items are independent
