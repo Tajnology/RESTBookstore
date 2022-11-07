@@ -27,7 +27,7 @@ Example:
 {
     "item_search_url": "https://bookstore.com/Search?query={query}",
     "item_url": "https://bookstore.com/Item/{item_id}",
-    "cart_url": "",
+    "cart_url": "https://bookstore.com/Cart/{cart_id}",
 }
 ```
 
@@ -159,4 +159,97 @@ Response Body:
 ### **GET /Cart/{cart_id}**
 View what is in cart.
 
+Parameters:
+ - cart_id: the unique identifier for a cart
 
+Responses:
+ - 200 OK
+ - 301 Moved Permanently
+ - 404 Not Found
+
+
+Example:
+
+``GET https://bookstore.com/Cart/4432``
+
+```
+{
+    "_links": {
+        "self": { "href": "/Cart/4432" }
+    },
+    "cart_id": 4332,
+    "count": 1,
+    "_embedded": {
+        "item": [
+            {
+                "_links": { "self": { "href": "/ViewItem/1222" } },
+                "item_id": 1222,
+                "title", "Hitchhiker's Guide to the Galaxy",
+                "author", "Adams, Douglas"
+            }
+        ]
+    }
+}
+```
+
+### **PUT /Cart/{cart_id}**
+Add and remove items from the cart.
+
+Parameters:
+ - cart_id: the unique identifier for a cart
+
+Responses:
+ - 200 OK
+ - 301 Moved Permanently
+ - 400 Bad Request
+ - 404 Not Found
+
+Example:
+
+``PUT /Cart/4432``
+
+Request Body:
+```
+{
+    "add": [1223],
+    "remove": [1222]
+}
+```
+
+Response Body:
+```
+{
+    "_links": {
+        "self": { "href": "/Cart/4432" }
+    },
+    "cart_id": 4332,
+    "count": 1,
+    "_embedded": {
+        "item": [
+            {
+                "_links": { "self": {"href": "/ViewItem/1223" } },
+                "item_id": 1223,
+                "title": "Guardians of the Galaxy",
+                "author": "Drake, Arnold"
+            }
+        ]
+    }
+}
+```
+
+### **DELETE /Cart/{cart_id}**
+Clear cart
+
+Parameters:
+ - cart_id: The unique identifier of a cart
+
+Responses:
+ - 204 OK
+ - 301 Moved Permanently
+ - 404 Not Found
+
+Example:
+
+``DELETE /Cart/4432``
+
+Response Code: 204 No Content
