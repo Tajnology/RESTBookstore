@@ -20,7 +20,9 @@ API Directory
 Responses:
  - 200 OK
 
-Payload:
+Example:
+
+``GET /``
 ```
 {
     "item_search_url": "https://bookstore.com/Search?query={query}",
@@ -46,7 +48,7 @@ Responses:
 
 Example:
 
-``https://bookstore.com/Search?query=galaxy&page=2``
+``GET https://bookstore.com/Search?query=galaxy&page=2``
 ```
 {
     "_links": {
@@ -90,7 +92,7 @@ Responses:
 
 Example:
 
-``https://bookstore.com/Item/1222``
+``GET https://bookstore.com/Item/1222``
 ```
 {
     "_links": {
@@ -123,7 +125,7 @@ Responses:
 
 Example:
 
-``https://bookstore.com/NewCart``
+``POST https://bookstore.com/Cart``
 
 Request Body:
 ```
@@ -134,7 +136,21 @@ Request Body:
 Response Body:
 ```
 {
-    "_
+    "_links": {
+        "self": { "href": "/Cart/4432" }
+    },
+    "cart_id": 4332,
+    "count": 1,
+    "_embedded": {
+        "item": [
+            {
+                "_links": { "self": { "href": "/ViewItem/1222" } },
+                "item_id": 1222,
+                "title", "Hitchhiker's Guide to the Galaxy",
+                "author", "Adams, Douglas"
+            }
+        ]
+    }
 }
 ```
 
